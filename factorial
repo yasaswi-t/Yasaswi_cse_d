@@ -1,0 +1,28 @@
+/*Problem statement: complete the function factorial which takes a string and prints the factorial of the number in string*/
+#include <stdio.h>
+#include<stdlib.h>
+#include <conio.h>
+long long int factorial(char arr[])
+{
+int x=0,i;
+long long int fact=1;
+for(i=0;i<strlen(arr);i++)
+x=10*x+(arr[i]-48);
+while(x>=1)
+{
+fact=fact*x;
+x--;
+}
+return fact;
+}
+void main()
+{
+
+char fact[10];
+long long int F;
+clrscr();
+scanf("%s",fact);
+F=factorial(fact);
+printf("%lld",F);
+getch();
+}
