@@ -1,0 +1,104 @@
+/*Program Statement: 
+
+Write a function to delete all the consequent duplicates in a linked list. Complete the function deleteConsequentDuplicates which takes the head pointer and and returns the head pointer of the updated linked list.
+*/
+#include<stdio.h>
+#include<stdlib.h>
+struct Node
+{
+	int data;
+	struct Node * next;
+};
+
+
+struct Node * addNode(struct Node * h)
+{
+	
+	
+	struct Node * newnode = (struct Node *)malloc(sizeof(struct Node));
+	newnode->next = NULL;
+	scanf("%d",&newnode->data);
+	
+	h->next = newnode;
+	
+	return newnode;
+	
+}
+
+void display(struct Node * head)
+{
+	while(head!=NULL)
+	{
+		printf("%d ",head->data);
+		head = head ->next;
+	}
+	
+}
+struct Node * deleteConsequentDuplicates(struct Node * head)
+
+
+
+{
+int x;
+struct Node * first=head;
+struct Node * temp=head->next;
+x=head->data;
+while(temp!=NULL)
+{
+if(temp->data==x)
+{
+first->next=temp->next;
+temp=temp->next;
+}
+else
+{
+x=temp->data;
+first=first->next;
+temp=temp->next;
+}
+}
+return head;
+}
+
+
+
+
+
+
+
+void main()
+{
+	struct Node * head;
+	struct Node * tail;
+	int size;
+	clrscr();
+	scanf("%d",&size);
+	if(size>0)
+	{
+	 head = (struct Node *)malloc(sizeof(struct Node));
+	 tail = head;
+	 printf("Enter %d values:",size);
+
+	 head->next = NULL;
+	 scanf("%d",&head->data);
+	 
+	 size--;
+	 
+	while(size>0)
+	 {
+	 	tail = addNode(tail);
+	 	size--;
+	 }
+
+	 head = deleteConsequentDuplicates(head);
+	 display(head);
+    }
+    else
+    {
+    	printf(" please enter a valid size !!!");
+    }
+    getch();
+	
+    
+	
+}
